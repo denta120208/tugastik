@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+   *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+   }
+
+   .container {
+    width: 100%;
+    height: 100vh;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   }
+
+   .btn{
+    padding: 10px 60px; ;
+    background:green ;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: 500;
+    border-radius: 30px;
+   }
+   .popup{
+    width: 400px;
+    background: green;
+    border-radius: 6px;
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(0.1);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: black;
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+   }
+   .open-popup{
+visibility: visible;
+top: 50%;
+transform: translate(-50%,-50%); scale:(1);
+   }
+
+   .popup img {
+    width: 100px; 
+    margin-top: -50px;
+    border-radius: 50%;
+    box-shadow: 0 2px 2px 
+
+   }
+
+   .popup h2{
+    font-size: 38px;
+    font-weight: 500;
+    margin: 30px 0 10px;
+
+   }
+   .popup button{
+    width: 100%;
+    margin-top: 50px;
+    padding: 10px 0;
+    background: #6fd649 ;
+    color: #fff;
+    border: 0;
+    outline: none;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 5px 5px  
+   }
+</style>
+<body>
+    <div class="container">
+    <button type="submit" class="btn" onclick="openPopup()">PESAN</button>
+<div class="popup" id="popup">
+    <img src="data:image/png;base64,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">
+    <h2> TERIMA KASIH</h2>
+    <p>PESANAN ANDA AKAN KAMI PROSES....SILAKAN TUNGGU</p>
+  <a href="histori.html">  <button type="button" onclick="closePopup()">Lihat pesanan anda</button>
+
+</div>
+    </div>
+    <script>
+        let popup = document.getElementById("popup");
+
+        function openPopup(){
+popup.classList.add("open-popup");
+        }
+
+        function closePopup(){
+popup.classList.remove("close-popup");
+        }
+    </script>
+</body>
+</html>
